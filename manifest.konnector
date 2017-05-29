@@ -1,10 +1,10 @@
 {
   "version": "1.0.0",
-  "name": "konnector name",
+  "name": "Orange",
   "type": "node",
-  "slug": "konnectorslug",
+  "slug": "orange",
   "description": "description",
-  "source": "git://github.com/cozy/cozy-konnector-thename.git",
+  "source": "git://github.com/cozy/cozy-konnector-orange.git",
   "fields": {
     "save_folder": {
       "doctype": "io.cozy.files",
