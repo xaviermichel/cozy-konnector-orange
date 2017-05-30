@@ -3,7 +3,6 @@
   "name": "Orange",
   "type": "node",
   "slug": "orange",
-  "description": "description",
   "source": "git://github.com/cozy/cozy-konnector-orange.git",
   "fields": {
     "save_folder": {
