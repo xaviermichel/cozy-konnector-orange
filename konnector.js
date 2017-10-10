@@ -66,7 +66,7 @@ function logIn (requiredFields, billInfos, data, next) {
   // Get cookies from login page.
   request(logInOptions, function (err, res, body) {
     if (err) {
-      log('error', err)
+      console.log(err, 'error details after getting the login page')
       return next('LOGIN_FAILED')
     }
 
@@ -74,15 +74,14 @@ function logIn (requiredFields, billInfos, data, next) {
     log('info', 'Logging in')
     request(signInOptions, function (err, res, body) {
       if (err) {
-        log('error', 'Login failed')
-        log('error', err)
+        console.log(err, 'error details after login')
         return next('LOGIN_FAILED')
       }
 
       let response = JSON.parse(body)
       if (response.credential != null || response.password != null) {
         let error = response.credential || response.password
-        log('error', error)
+        console.log(error, 'error details after login 2')
         return next('LOGIN_FAILED')
       }
 
@@ -91,7 +90,7 @@ function logIn (requiredFields, billInfos, data, next) {
       request(billOptions, function (err, res, body) {
         if (err) {
           log('error', 'An error occured while fetching bills')
-          log('error', err)
+          console.log(err, 'error details after trying to fetch the bills')
           return next('UNKNOWN_ERROR')
         }
 
