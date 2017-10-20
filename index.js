@@ -9,7 +9,7 @@ let rq = request({
 })
 
 module.exports = new BaseKonnector(function fetch (fields) {
-  return logIn(fields)
+  return logIn.bind(this)(fields)
   .then(parsePage)
   .then(entries => saveBills(entries, fields.folderPath, {
     timeout: Date.now() + 60 * 1000,
