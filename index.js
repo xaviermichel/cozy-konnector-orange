@@ -51,6 +51,20 @@ function logIn (fields) {
     })
     return rq('https://espaceclientv3.orange.fr/?page=factures-historique')
   })
+  .then($ => {
+    // if multiple contracts choices, choose the first one
+    const contractChoices = $('.ec-contractPanel-description a').map(function (index, elem) {
+      const $elem = $(elem)
+      return {
+        link: $elem.attr('href'),
+        text: $elem.text()
+      }
+    }).get().filter(value => value.text.includes('Livebox') || value.text.includes('Orange'))
+    if (contractChoices.length) {
+      // take the first orange contract at the moment
+      return rq(`https://espaceclientv3.orange.fr/${contractChoices[0].link}`)
+    } else return $
+  })
 }
 
 // Layer to parse the fetched page to extract bill data.
