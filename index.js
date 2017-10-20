@@ -74957,6 +74957,7 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 const moment = __webpack_require__(0)
+moment.locale('fr')
 
 const { log, BaseKonnector, saveBills, request } = __webpack_require__(571)
 
@@ -75006,7 +75007,7 @@ function logIn (fields) {
       cheerio: true,
       jar: true
     })
-    return rq('https://m.espaceclientv3.orange.fr/?page=factures-archives')
+    return rq('https://espaceclientv3.orange.fr/?page=factures-historique')
   })
 }
 
@@ -75016,17 +75017,18 @@ function parsePage ($) {
 
   // Anaylyze bill listing table.
   log('info', 'Parsing bill pages')
-  $('ul.factures li').each(function () {
-    let firstCell = $(this).find('span.date')
-    let secondCell = $(this).find('span.montant')
-    let thirdCell = $(this).find('span.telecharger')
+  $('table tbody tr').each(function () {
+    let date = $(this).find('td[headers=ec-dateCol]').text()
+    date = moment(date, 'LL')
+    let amount = $(this).find('td[headers=ec-amountCol]').text()
+    amount = parseFloat(amount.trim().replace(' €', '').replace(',', '.'))
+    let fileurl = $(this).find('td[headers=ec-downloadCol] a').attr('href')
 
     // Add a new bill information object.
-    const date = moment(firstCell.html(), 'DD/MM/YYYY')
     let bill = {
       date: date.toDate(),
-      amount: parseFloat(secondCell.html().replace(' €', '').replace(',', '.')),
-      fileurl: thirdCell.find('a').attr('href'),
+      amount,
+      fileurl,
       filename: getFileName(date),
       type: 'phone',
       vendor: 'Orange'
