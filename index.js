@@ -1,9 +1,9 @@
 const moment = require('moment')
 moment.locale('fr')
 
-const { log, BaseKonnector, saveBills, request } = require('cozy-konnector-libs')
+const { log, BaseKonnector, saveBills, requestFactory } = require('cozy-konnector-libs')
 
-let rq = request({
+let request = requestFactory({
   // debug: true,
   jar: true
 })
@@ -23,9 +23,9 @@ module.exports = new BaseKonnector(function fetch (fields) {
 function logIn (fields) {
   // Get cookies from login page.
   log('info', 'Get login form')
-  return rq('https://id.orange.fr/auth_user/bin/auth_user.cgi')
+  return request('https://id.orange.fr/auth_user/bin/auth_user.cgi')
   // Log in orange.fr
-  .then(() => rq({
+  .then(() => request({
     method: 'POST',
     url: 'https://id.orange.fr/auth_user/bin/auth_user.cgi',
     form: {
@@ -44,12 +44,12 @@ function logIn (fields) {
     this.terminate('LOGIN_FAILED')
   })
   .then(() => {
-    rq = request({
+    request = requestFactory({
       json: false,
       cheerio: true,
       jar: true
     })
-    return rq('https://espaceclientv3.orange.fr/?page=factures-historique')
+    return request('https://espaceclientv3.orange.fr/?page=factures-historique')
   })
   .then($ => {
     // if multiple contracts choices, choose the first one
@@ -62,7 +62,7 @@ function logIn (fields) {
     }).get().filter(value => value.text.includes('Livebox') || value.text.includes('Orange'))
     if (contractChoices.length) {
       // take the first orange contract at the moment
-      return rq(`https://espaceclientv3.orange.fr/${contractChoices[0].link}`)
+      return request(`https://espaceclientv3.orange.fr/${contractChoices[0].link}`)
     } else return $
   })
 }
