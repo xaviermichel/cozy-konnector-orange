@@ -1,0 +1,34 @@
+{
+  "name": "cozy-konnector-orange",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cozy/cozy-konnector-orange.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "AGPL-3.0",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "cozy-konnector-dev",
+    "standalone": "cozy-konnector-standalone",
+    "standalone:record": "REPLAY=record cozy-konnector-standalone",
+    "standalone:replay": "REPLAY=replay cozy-konnector-standalone",
+    "build": "webpack",
+    "lint": "standard --fix konnector.js",
+    "deploy": "git-directory-deploy --directory build/ --branch build --repo=https://github.com/konnectors/cozy-konnector-orange.git",
+    "deploy:prod": "git-directory-deploy --directory build/ --branch latest --repo=https://github.com/konnectors/cozy-konnector-orange.git"
+  },
+  "dependencies": {
+    "cozy-konnector-libs": "3.2.5",
+    "moment": "2.21.0"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "4.5.1",
+    "git-directory-deploy": "1.5.1",
+    "standard": "11.0.0",
+    "webpack": "4.1.1",
+    "webpack-cli": "2.0.12"
+  }
+}
