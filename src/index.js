@@ -1,0 +1,143 @@
+// Force sentry DSN into environment variables
+// In the future, will be set by the stack
+process.env.SENTRY_DSN =
+  process.env.SENTRY_DSN ||
+  'https://913841dc7a6a44a59bb26b70df222286:34e4ff6001884d0fac9091d4c1fee102@sentry.cozycloud.cc/25'
+
+const moment = require('moment')
+moment.locale('fr')
+
+const {
+  log,
+  BaseKonnector,
+  saveBills,
+  requestFactory
+} = require('cozy-konnector-libs')
+
+let request = requestFactory({
+  // debug: true,
+  jar: true
+})
+
+module.exports = new BaseKonnector(function fetch(fields) {
+  return logIn
+    .bind(this)(fields)
+    .then(parsePage)
+    .then(entries =>
+      saveBills(entries, fields.folderPath, {
+        timeout: Date.now() + 60 * 1000,
+        identifiers: ['orange'],
+        dateDelta: 12,
+        amountDelta: 5
+      })
+    )
+})
+
+// Layer to login to Orange website.
+function logIn(fields) {
+  // Get cookies from login page.
+  log('info', 'Get login form')
+  return (
+    request('https://id.orange.fr/auth_user/bin/auth_user.cgi')
+      // Log in orange.fr
+      .then(() =>
+        request({
+          method: 'POST',
+          url: 'https://id.orange.fr/auth_user/bin/auth_user.cgi',
+          form: {
+            credential: fields.login,
+            password: fields.password
+          }
+        })
+      )
+      .then(body => {
+        if (body.credential != null || body.password != null) {
+          throw new Error(body.credential || body.password)
+        }
+      })
+      .catch(err => {
+        log('error', 'Error while trying to login')
+        log('error', err)
+        this.terminate('LOGIN_FAILED')
+      })
+      .then(() => {
+        request = requestFactory({
+          json: false,
+          cheerio: true,
+          jar: true
+        })
+        return request(
+          'https://espaceclientv3.orange.fr/?page=factures-historique'
+        )
+      })
+      .then($ => {
+        // if multiple contracts choices, choose the first one
+        const contractChoices = $('.ec-contractPanel-description a')
+          .map(function(index, elem) {
+            const $elem = $(elem)
+            return {
+              link: $elem.attr('href'),
+              text: $elem.text()
+            }
+          })
+          .get()
+          .filter(
+            value =>
+              value.text.includes('Livebox') || value.text.includes('Orange')
+          )
+        if (contractChoices.length) {
+          // take the first orange contract at the moment
+          return request(
+            `https://espaceclientv3.orange.fr/${contractChoices[0].link}`
+          )
+        } else return $
+      })
+  )
+}
+
+// Layer to parse the fetched page to extract bill data.
+function parsePage($) {
+  const entries = []
+
+  // Anaylyze bill listing table.
+  log('info', 'Parsing bill pages')
+  $('table tbody tr').each(function() {
+    let date = $(this)
+      .find('td[headers=ec-dateCol]')
+      .text()
+    date = moment(date, 'LL')
+    let amount = $(this)
+      .find('td[headers=ec-amountCol]')
+      .text()
+    amount = parseFloat(
+      amount
+        .trim()
+        .replace(' €', '')
+        .replace(',', '.')
+    )
+    let fileurl = $(this)
+      .find('td[headers=ec-downloadCol] a')
+      .attr('href')
+
+    // Add a new bill information object.
+    let bill = {
+      date: date.toDate(),
+      amount,
+      fileurl,
+      filename: getFileName(date),
+      type: 'phone',
+      vendor: 'Orange'
+    }
+
+    if (bill.date != null && bill.amount != null) {
+      entries.push(bill)
+    }
+  })
+
+  log('info', `Bill retrieved: ${entries.length} found`)
+  return entries
+}
+
+function getFileName(date) {
+  return `${date.format('YYYYMM')}_orange.pdf`
+}
