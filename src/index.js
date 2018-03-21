@@ -61,6 +61,8 @@ function logIn(fields) {
         this.terminate('LOGIN_FAILED')
       })
       .then(() => {
+        log('info', 'Successfully logged in.')
+
         request = requestFactory({
           json: false,
           cheerio: true,
