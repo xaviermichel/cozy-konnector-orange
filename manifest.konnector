@@ -1,33 +1,33 @@
 {
   "version": "1.0.0",
-  "name": "Orange",
-  "type": "node",
+  "name": "Orange Factures",
+  "type": "konnector",
+  "language": "node",
+  "icon": "orange.svg",
   "slug": "orange",
-  "source": "git://github.com/cozy/cozy-konnector-orange.git",
+  "source": "git://github.com/konnectors/cozy-konnector-orange.git#build",
+  "editor": "Cozy",
+  "vendor_link": "https://www.orange.fr/",
+  "categories": ["telecom", "isp"],
+  "screenshots": [],
   "fields": {
-    "save_folder": {
-      "doctype": "io.cozy.files",
-      "type": "folder"
+    "login": {
+      "type": "text"
     },
-    "account": {
-      "doctype": "io.cozy.accounts",
-      "account_type": "accounttype",
-      "accountFormat": "login,password"
-    }
-  },
-  "locales": {
-    "fr": {
-      "description": "Récupère toutes vos factures",
-      "permissions": {
-        "bills": {
-          "description": "Utilisé pour sauvegarder les données de facturation"
-        },
-        "files": {
-          "description": "Utilisé pour sauvegarder les factures"
-        }
+    "password": {
+      "type": "password"
+    },
+    "advancedFields": {
+      "folderPath": {
+        "advanced": true,
+        "isRequired": false
       }
     }
   },
+  "time_interval": [15, 21],
+  "data_types": [
+    "bill"
+  ],
   "permissions": {
     "bills": {
       "description": "Required to save the bills data",
@@ -48,7 +48,18 @@
     }
   },
   "developer": {
-    "name": "yourname",
-    "url": "your web site"
+    "name": "Cozy Cloud",
+    "url": "https://cozy.io"
+  },
+  "langs": ["fr"],
+  "locales": {
+    "fr": {
+      "short_description": "Récupérer vos données Orange dans votre Cozy",
+      "long_description": "Ce fournisseur vous permettra de récupérer l'ensemble de vos factures Orange dans votre Cozy."
+    },
+    "en": {
+      "short_description": "Fetch your Orange data in your Cozy",
+      "long_description": "This provider will allow you to fetch all your Orange factures in your Cozy."
+    }
   }
 }
