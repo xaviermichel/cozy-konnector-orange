@@ -1524,14 +1524,6 @@ center-align@^0.1.1:
     align-text "^0.1.3"
     lazy-cache "^1.0.3"
 
-chalk@2.3.2, chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.3.0, chalk@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.3.2.tgz#250dc96b07491bfd601e648d66ddf5f60c7a5c65"
-  dependencies:
-    ansi-styles "^3.2.1"
-    escape-string-regexp "^1.0.5"
-    supports-color "^5.3.0"
-
 chalk@2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.0.tgz#a060a297a6b57e15b61ca63ce84995daa0fe6e52"
@@ -1549,6 +1541,14 @@ chalk@^1.0.0, chalk@^1.1.1, chalk@^1.1.3:
     has-ansi "^2.0.0"
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
+
+chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.3.0, chalk@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.3.2.tgz#250dc96b07491bfd601e648d66ddf5f60c7a5c65"
+  dependencies:
+    ansi-styles "^3.2.1"
+    escape-string-regexp "^1.0.5"
+    supports-color "^5.3.0"
 
 chalk@~0.4.0:
   version "0.4.0"
@@ -1996,10 +1996,11 @@ cozy-jobs-cli@1.0.17:
     opn "^5.1.0"
     regenerator-runtime "^0.11.1"
 
-cozy-konnector-libs@3.8.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/cozy-konnector-libs/-/cozy-konnector-libs-3.8.1.tgz#c4f9d6c2df742023897691c8d0e257a516ec00cd"
+cozy-konnector-libs@4.1.7:
+  version "4.1.7"
+  resolved "https://registry.yarnpkg.com/cozy-konnector-libs/-/cozy-konnector-libs-4.1.7.tgz#85f8d73686f26f2101ed284e4668b4fe15598590"
   dependencies:
+    babel-cli "^6.26.0"
     babel-plugin-transform-object-rest-spread "^6.26.0"
     babel-preset-env "^1.6.0"
     bluebird "^3.5.0"
@@ -2010,8 +2011,9 @@ cozy-konnector-libs@3.8.1:
     commander "^2.12.2"
     core-js "^2.4.1"
     cozy-client-js "^0.8.0"
-    cozy-logger "^1.0.4"
+    cozy-logger "^1.1.4"
     date-fns "^1.29.0"
+    geco "^0.11.1"
     isomorphic-fetch "^2.2.1"
     jest "^22.0.0"
     jsdoc-to-markdown "^4.0.1"
@@ -2057,10 +2059,6 @@ cozy-konnector-libs@^4.1.7:
     request-debug "^0.2.0"
     request-promise "^4.2.1"
     uuid "^3.1.0"
-
-cozy-logger@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/cozy-logger/-/cozy-logger-1.0.4.tgz#598a826ef0824e590bf68a667b83b2d7c7d2cfbe"
 
 cozy-logger@^1.1.4:
   version "1.1.4"
@@ -4943,12 +4941,12 @@ klaw@~2.0.0:
   dependencies:
     graceful-fs "^4.1.9"
 
-konitor@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/konitor/-/konitor-0.7.0.tgz#91460663ce758c7f9c5c8fabff1968c798cd6565"
+konitor@0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/konitor/-/konitor-0.8.2.tgz#6ca45b589080e7b477506e21955d99c5817626b3"
   dependencies:
     "@octokit/rest" "15.2.6"
-    chalk "2.3.2"
+    chalk "2.4.0"
     clear "0.1.0"
     clui "0.3.6"
     configstore "3.1.2"
@@ -4958,8 +4956,10 @@ konitor@0.7.0:
     js-yaml "3.11.0"
     lodash "4.17.5"
     mkdirp "0.5.1"
+    request "2.85.0"
+    request-promise "4.2.2"
     simple-git "1.92.0"
-    tty-table "2.5.9"
+    tty-table "2.6.0"
     yargs "11.0.0"
 
 lazy-cache@^1.0.3:
@@ -6388,7 +6388,7 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@1.11.1, prettier@^1.11.1, prettier@^1.5.3:
+prettier@^1.11.1, prettier@^1.5.3:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.11.1.tgz#61e43fc4cd44e68f2b0dfc2c38cd4bb0fccdcc75"
 
@@ -6888,7 +6888,7 @@ request-promise-native@^1.0.5:
     stealthy-require "^1.1.0"
     tough-cookie ">=2.3.3"
 
-request-promise@^4.2.1:
+request-promise@4.2.2, request-promise@^4.2.1:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/request-promise/-/request-promise-4.2.2.tgz#d1ea46d654a6ee4f8ee6a4fea1018c22911904b4"
   dependencies:
@@ -6897,7 +6897,7 @@ request-promise@^4.2.1:
     stealthy-require "^1.1.0"
     tough-cookie ">=2.3.3"
 
-request@2, request@^2.81.0, request@^2.83.0:
+request@2, request@2.85.0, request@^2.81.0, request@^2.83.0:
   version "2.85.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.85.0.tgz#5a03615a47c61420b3eb99b7dba204f83603e1fa"
   dependencies:
@@ -7152,7 +7152,7 @@ sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
-schema-utils@^0.4.2, schema-utils@^0.4.5:
+schema-utils@^0.4.4, schema-utils@^0.4.5:
   version "0.4.5"
   resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.4.5.tgz#21836f0608aac17b78f9e3e24daff14a5ca13a3e"
   dependencies:
@@ -7976,9 +7976,9 @@ tty-browserify@0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
 
-tty-table@2.5.9:
-  version "2.5.9"
-  resolved "https://registry.yarnpkg.com/tty-table/-/tty-table-2.5.9.tgz#1aaa76ca531e7689296897a7d170d44c1af1d7c1"
+tty-table@2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/tty-table/-/tty-table-2.6.0.tgz#a1e43c01ed16026fdfe75d7fbbd8af08fc3f0222"
   dependencies:
     chalk "^2.3.0"
     csv "^2.0.0"
@@ -8341,9 +8341,9 @@ webpack-addons@^1.1.5:
   dependencies:
     jscodeshift "^0.4.0"
 
-webpack-cli@2.0.14:
-  version "2.0.14"
-  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-2.0.14.tgz#71d03d8c10547c1dfd674f71ff3b0457c33a74cd"
+webpack-cli@2.0.15:
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-2.0.15.tgz#7532066556b03bd3292285ac08537e28844616c2"
   dependencies:
     chalk "^2.3.2"
     cross-spawn "^6.0.5"
@@ -8379,9 +8379,9 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.5.0.tgz#1e6f71e148ead02be265ff2879c9cd6bb30b8848"
+webpack@4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.6.0.tgz#363eafa733710eb0ed28c512b2b9b9f5fb01e69b"
   dependencies:
     acorn "^5.0.0"
     acorn-dynamic-import "^3.0.0"
@@ -8397,7 +8397,7 @@ webpack@4.5.0:
     mkdirp "~0.5.0"
     neo-async "^2.5.0"
     node-libs-browser "^2.0.0"
-    schema-utils "^0.4.2"
+    schema-utils "^0.4.4"
     tapable "^1.0.0"
     uglifyjs-webpack-plugin "^1.2.4"
     watchpack "^1.5.0"
