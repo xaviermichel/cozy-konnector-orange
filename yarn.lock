@@ -1961,7 +1961,7 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
 
-cozy-app-publish@^0.3.6:
+cozy-app-publish@0.3.6:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/cozy-app-publish/-/cozy-app-publish-0.3.6.tgz#04b1eccb3c0e81e7b03c22d324263367def0492b"
   dependencies:
