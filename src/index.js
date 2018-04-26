@@ -83,6 +83,7 @@ function logIn(fields) {
         }
       })
       .catch(err => {
+        log('error', 'LOGIN_FAILED')
         log('error', 'Error while trying to login')
         log('error', err)
         this.terminate(errors.LOGIN_FAILED)
@@ -98,11 +99,19 @@ function logIn(fields) {
             if (isTimeout)
               log(
                 'info',
-                'We go the famout timeout error. Trying multiple times'
+                'We go the famous timeout error. Trying multiple times'
               )
             return isTimeout
           }
         })
+      })
+      .catch(err => {
+        const isTimeout = err.cause && err.cause.code === 'ETIMEDOUT'
+        if (isTimeout) {
+          throw new Error(errors.VENDOR_DOWN)
+        } else {
+          throw err
+        }
       })
       .then($ => {
         // if multiple contracts choices, choose the first one
