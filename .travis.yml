@@ -1,43 +1,43 @@
 language: node_js
 node_js:
-  - '8'
+- '8'
 env:
   global:
-    # kosssi GITHUB_TOKEN
-    # to generate yours : travis encrypt GITHUB_TOKEN=<your_GITHUB_TOKEN>
-    - secure: "RLqCHVjTspeknERY/1D9F28aTVHgT7JiZphoqPmwYdqgAttQQJK2xHPtbCdU6U4HbjbZE/btu54aiBWWzQEZLrP/keqDooW5Bz1DIvjqQO9hvMePZ423g9z4V9Ccya/suWeIAYWFBrR6FzXEqoOovvR84F9YQTSckJ2FTPjBKGWJgjYHkviqZOKFOAtxVbnlysXFjy+4viORIj0jz5HNXX2DI5ajsJB6rBY+6yzeGrEAAndVxH77DD4PtSlujpSUPVWrW4Q7Ypbo9w/NiOw9djMm21beNEebHaAQ7Qjesu2X/Oo2bKlAGLSLz0ummhbJiyhD3tAodG19mo5TNac29lqcipGrXgD8cK10Nq7Uy262qdANupaCVmWTLabVw+cTUDyNktJi/ob/cKvJGtsFd4CdNk6m1S0lQnCOSIJ4hXSZ/NKT97auZ47aqSMYmzbZuzTz/DO3/+ctSNjFypxAtUsEm6a8ojwgUC4QJHFSIBeZDnZXjMl+fkj1VRD9JysXuR3mfDUTXL1maBCILJf4aQMtp8hYScrRoOR86bHB6KPFOf1yU2gr7PFGHd6e9Fz3xTz027oZMYQg+xsUTPJSyx/1a1AVWSNJOP4VktxtdI06eUYKwlAOvZyVABBBB0KAcrthrEzauf+wOetj//P1glY/BpUdShaY671WD9i+7Xw="
-    # REGISTRY_TOKEN
-    - secure: UbZtKShIm/XMi7HpNGgHpFaJF9ADA1HiU7dvOS6Ckbx9fSJDz0QLUIOH7WmxGK/qmP7TMQHUptqBIoER+2LWzb34uRVe1cJ+Q6w5Xw4m2svdTMm2v/Kl1mkwpIpfC3Yy24XNbMPRr/QYjMl9fnnyNf6o7egKU9dsIx3MAZIObweivm3kUaoDF9Mo5vFOCzHmpNM4/HTJ8jd1c+Jonr5pC9euxOhl+M0CugfkEim1P+2sD2t3rn5AGnoWzduDhJTmy090utJHygLWdWg2u/Ry+nhnRPWFDQNtI26tBm6N24gKEjFsnkpfQGy25OwHPB+YWPQNyUhFqHb70DT87iE2dKozevs+TlACKh7ulnosFVsu9ApaMXjEEhZSERlLfPygHr8JupzpE3aBXwUzz0JyfQFe5iU8NAptGbVj8ODefKK2de8Kv4DVw2UJ+fYkRMoK6ma0ILkT3iXexsb9LNTxhswfTa+O9OQD3l/C8qMHyDa4XTH97ibzx6Rw3flzQaAyJ9ifj4H7apkIR9+ZG0Brf+S+/kpmiWPAvO3gD4QFcaANoqDZfRY7hzFhJxEN6BCI8XbX/gUwxlV1oYTEoT1i122p1elzL2R+OVbzgTC9Ax4L+YwYp/eSv+IyFvKuY3iMv6u2/RkA45YfC7j/AIKi1sSwHK8w8Qy1y3ahLy3B03M=
+  - GH_USER_EMAIL="travis@example.org"
+  - GH_USER_NAME="cozy-bot"
+  - DEPLOY_REPOSITORY="git@github.com:konnectors/cozy-konnector-orange.git"
+  - secure: Qe1ZWrDJoemkoqQS5JeJYpSRUeVWOFHgaz9RjdgI18mHD70JoWHdCWIhsY1yf9uG9pnWN/gb6G/ANNxDK83tEj/zvVam+KH56QUI1yHeWxrngax9ggyx5S6my1ozYPV5UylhpvYYNzg6lhCVe0aAMTayRzYw8ocRN72gdoFzWOjE/5XYD6lnMOY+XzKv7ag5Ui43kD3Q5AYv5jwEmzSOC/yREmjtT5ssFev3tghgZBYRstUnw9gknj6eAZX8Xmyc8xvn9dVIJfWY7QsE59FKu0Y7vuqlPXq3Pkcy5XesxPJTkhJ2jqfBu2pNk+vRgbd5wqpPx9EwwAORNOSBY92Fq6QmntDxLfSs237IX5JhZMN3zpCCR44BNWF/W1nGt0bIZbbW9ttvL5UzgI6Av/u4F6KM86OayF1JyHPWm82XLlbnnzwyrwUJhCvR2WNhznIFoKIj4yQ8dxQmWNu4xMh0a0yerFBfHteVJx8/dVJFOlXwJ12tB9F5R3xSIR6kEUGYXbL1PSlUvRWEZtxTbuGJySTdaS2X6niZb2OngKgDwi5QwYFIVEB4QTRrXhxjqyqqlL+5P6OWHZ84GRIGHrrUJy0ukd+x8hGjmXSFW609oiWBuB9V0iwfVPPvmbnAClG4RIzRcQXfIHAqGEZyfbX2PIWbymBiUsReY2SyPjxfOgM=
   matrix:
-    # drazik box account
-    # to generate yours : travis encrypt KONNECTOR_CONFIG=\'"`cat konnector-dev-config.json | tr -d '\n'`"\' -r konnectors/cozy-konnector-orange
-    - secure: "JB80c6MnuDj55h1w+slGmiRmbV6WEXhPFLzvr+1IpS3ovuXCSRoKAm+sgM6ogo1QV5EoTxzEIHBGV+/b4hqEtur2YyhivAqZH0AQxyN45puRsR3CCnLI42bZsuUd3t+Y6IBeci6XcP4OYrXm6YTHCPZmotf/1OSMUM0yC72m7Fxt4K+Z13KG2ZpbGY//0q0Tmn5oMtWKkAdfiRID4hR0miesMLUR7WvQemG4cErlDXoIXeh16G3OYxYEuliYVRtjAk68VNrf+SKajMQ9Zk691CbPExAck/voknhtbnftbBCfkybp2DxzogWY/RQItDu22AzClwMCU40NpO61ppOXoBNDQUn9AlNJeJNxFAky0gUD5HuKlXf/AE1O2mcS1phZXmyDQUpYbPzZzrEJehJpE6miPx+l2q7N2PCCzDE2xli8jN41blfzaQf+qUMHQgMhzKlyvSAay9tTWx6DNT+MPpcy/1Je9wuTvm8UG3JdQpKQRtSuSKlGA1vWiOS9ERIA1nDfMqWek4sZB+yNraqfVZS3UY58Fonx+kEuSFwYXIFtGGkE5shllmFrr8udtY4rSoKnYCn8mtivvGfDejCbrERGzZRXQXeHO9AxQT5qQVn7TeqRNx148KrUGDm+tvOT81zF38j88wIRSUFH6C67UPvUOmxH38fUJIRjZauBUCw="
+  - secure: JB80c6MnuDj55h1w+slGmiRmbV6WEXhPFLzvr+1IpS3ovuXCSRoKAm+sgM6ogo1QV5EoTxzEIHBGV+/b4hqEtur2YyhivAqZH0AQxyN45puRsR3CCnLI42bZsuUd3t+Y6IBeci6XcP4OYrXm6YTHCPZmotf/1OSMUM0yC72m7Fxt4K+Z13KG2ZpbGY//0q0Tmn5oMtWKkAdfiRID4hR0miesMLUR7WvQemG4cErlDXoIXeh16G3OYxYEuliYVRtjAk68VNrf+SKajMQ9Zk691CbPExAck/voknhtbnftbBCfkybp2DxzogWY/RQItDu22AzClwMCU40NpO61ppOXoBNDQUn9AlNJeJNxFAky0gUD5HuKlXf/AE1O2mcS1phZXmyDQUpYbPzZzrEJehJpE6miPx+l2q7N2PCCzDE2xli8jN41blfzaQf+qUMHQgMhzKlyvSAay9tTWx6DNT+MPpcy/1Je9wuTvm8UG3JdQpKQRtSuSKlGA1vWiOS9ERIA1nDfMqWek4sZB+yNraqfVZS3UY58Fonx+kEuSFwYXIFtGGkE5shllmFrr8udtY4rSoKnYCn8mtivvGfDejCbrERGzZRXQXeHO9AxQT5qQVn7TeqRNx148KrUGDm+tvOT81zF38j88wIRSUFH6C67UPvUOmxH38fUJIRjZauBUCw=
 cache:
   yarn: true
   directories:
-    - node_modules
+  - node_modules
 script:
-  - yarn lint
-  - yarn build
+- yarn lint
+- yarn build
 deploy:
-  # publish dev versions
-  - provider: script
-    repo: konnectors/cozy-konnector-orange
-    skip-cleanup: true
-    script: DEPLOY_BRANCH=build && yarn deploy && yarn cozyPublish
-    on:
-      branch: master
-  # publish on latest branch (will be removed when collect will use only the registry
-  - provider: script
-    repo: konnectors/cozy-konnector-orange
-    skip-cleanup: true
-    script: DEPLOY_BRANCH=latest && yarn deploy
-    on:
-      branch: prod
-  # publish stable versions and beta versions based on tags
-  - provider: script
-    repo: konnectors/cozy-konnector-orange
-    skip-cleanup: true
-    script: DEPLOY_BRANCH=build && yarn deploy && yarn cozyPublish
-    on:
-      tags: true
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
+  on:
+    branch: master
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=latest yarn deploy
+  on:
+    branch: prod
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
+  on:
+    tags: true
+before_install:
+- openssl aes-256-cbc -K $encrypted_1a2d187681d9_key -iv $encrypted_1a2d187681d9_iv
+  -in github_deploy_key.enc -out /tmp/github_deploy_key -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/github_deploy_key
+- ssh-add /tmp/github_deploy_key
+after_deploy:
+- rm /tmp/github_deploy_key
+- ssh-add -D
