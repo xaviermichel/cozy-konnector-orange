@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Orange Factures",
   "type": "konnector",
   "language": "node",
@@ -61,5 +61,6 @@
       "short_description": "Fetch your Orange data in your Cozy",
       "long_description": "This provider will allow you to fetch all your Orange factures in your Cozy."
     }
-  }
+  },
+  "manifest_version": "2"
 }
