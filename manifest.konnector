@@ -62,5 +62,6 @@
       "long_description": "This provider will allow you to fetch all your Orange factures in your Cozy."
     }
   },
+  "banksTransactionRegExp": "\\borange\\b",
   "manifest_version": "2"
 }
