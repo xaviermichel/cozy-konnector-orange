@@ -147,7 +147,7 @@ function parsePage($) {
 
   // Anaylyze bill listing table.
   log('info', 'Parsing bill pages')
-  $('table tbody tr').each(function() {
+  $('table tbody tr').first().each(function() {
     let date = $(this)
       .find('td[headers=ec-dateCol]')
       .text()
