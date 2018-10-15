@@ -5,7 +5,7 @@
   "language": "node",
   "icon": "orange.svg",
   "slug": "orange",
-  "source": "git://github.com/konnectors/cozy-konnector-orange.git#build",
+  "source": "git://github.com/konnectors/cozy-konnector-orange.git",
   "editor": "Cozy",
   "vendor_link": "https://www.orange.fr/",
   "categories": ["telecom", "isp"],
